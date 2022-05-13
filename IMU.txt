@@ -1,0 +1,29 @@
+
+import numpy as np
+import collections
+
+with open('XValues.txt', 'r') as file:
+    all_file = file.read().strip()  # Read and remove any extra new line
+    all_file_list = all_file.split('\n')  # make a list of lines
+#Print the initial list
+print("Intial list=> ", str(all_file_list))
+
+diff_list = []
+#Calculate difference between adjecent elements in list 
+for i in range(1, len(all_file_list)):
+    diff_list.append(float(all_file_list[i]) - float(all_file_list[i-1]))
+    
+
+#Print the Difference List
+print ("\nDifference list=> ", str(diff_list))
+
+#Search for largest element
+largest_number = diff_list[0] 
+for number in diff_list:
+    if number > largest_number:
+        largest_number = number
+    
+print('\nLargest latency value is: ',largest_number)
+#Print the index of coordinate
+index = diff_list.index(largest_number)
+print('\nMax. latency occurs in (',all_file_list[index],',',all_file_list[index+1],')')
